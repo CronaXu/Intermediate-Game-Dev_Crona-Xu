@@ -22,6 +22,11 @@ public class Camera2 : MonoBehaviour
             Vector3 newCamPos = new Vector3(collision.gameObject.transform.position.x, collision.gameObject.transform.position.y, -10); ;
             Camera.main.transform.position = newCamPos;
         }
+        if (collision.gameObject.name == "CamPos3") ;
+        {
+            Vector3 newCamPos = new Vector3(collision.gameObject.transform.position.x, collision.gameObject.transform.position.y, -10); ;
+            Camera.main.transform.position = newCamPos;
+        }
 
     }
 }
