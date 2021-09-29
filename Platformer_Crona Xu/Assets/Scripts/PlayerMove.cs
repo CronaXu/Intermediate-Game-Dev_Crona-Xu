@@ -39,6 +39,7 @@ public class PlayerMove : MonoBehaviour
         {
             myRenderer.flipX = false;
             Player.SetBool("IsMoving", true);
+            Player.SetBool("StandStill", false);
             HandleLRMovement(speed);
 
         }
@@ -46,15 +47,18 @@ public class PlayerMove : MonoBehaviour
         {
             myRenderer.flipX = true;
             Player.SetBool("IsMoving", true);
+            Player.SetBool("StandStill", false);
             HandleLRMovement(-speed);
         }
         else
         {
             Player.SetBool("IsMoving", false);
+            Player.SetBool("StandStill", true);
         }
         if (Input.GetKey(KeyCode.W) && onFloor)
         {
             Player.SetBool("IsJumping", true);
+            Player.SetBool("StandStill", false);
             myBody.velocity = new Vector3(myBody.velocity.x, jumpHeight);
 
         }
