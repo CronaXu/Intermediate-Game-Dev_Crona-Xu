@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -9,8 +10,11 @@ public class PlayerMove : MonoBehaviour
     public float gravityMultiplier;
     bool onFloor;
     public Animator Player;
+    public GameOver GameOver;
 
     Rigidbody2D myBody;
+    public AudioSource hit;
+   
 
     SpriteRenderer myRenderer;
     // Start is called before the first frame update
@@ -18,7 +22,8 @@ public class PlayerMove : MonoBehaviour
     {
         myBody = gameObject.GetComponent<Rigidbody2D>();
         myRenderer = gameObject.GetComponent<SpriteRenderer>();
-
+        hit = gameObject.GetComponent<AudioSource>();
+        
     }
 
     // Update is called once per frame
@@ -81,6 +86,8 @@ public class PlayerMove : MonoBehaviour
         myBody.velocity = new Vector3(dir, myBody.velocity.y);
     }
 
+    
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
@@ -92,7 +99,13 @@ public class PlayerMove : MonoBehaviour
         }
         if (collision.gameObject.tag == "enemy")
         {
+            hit.Play();
             myBody.position = new Vector3(21.73f, -6.31f, -825f);
+        }
+        if (collision.gameObject.tag == "throne")
+        {
+            hit.Play();
+            GameOver.Setup();
         }
     }
 }
