@@ -92,7 +92,7 @@ public class PlayerMove : MonoBehaviour
         }
         if (collision.gameObject.tag == "enemy")
         {
-            Destroy(gameObject);
+            myBody.position = new Vector3(21.73f, -6.31f, -825f);
         }
     }
 }
