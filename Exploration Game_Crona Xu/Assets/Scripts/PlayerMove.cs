@@ -7,7 +7,9 @@ public class PlayerMove : MonoBehaviour
     public float speed;
     public float jumpHeight;
     public float gravityMultiplier;
+    public GameObject talkUI;
     bool onFloor;
+    public int diaNum;
    
 
     Rigidbody2D myBody;
@@ -34,6 +36,15 @@ public class PlayerMove : MonoBehaviour
         }
         CheckKeys();
         JumpPhysics();
+        if (talkUI.activeSelf == true)
+        {
+            myBody.constraints = RigidbodyConstraints2D.FreezeAll;
+        }
+        else
+        {
+            myBody.constraints = RigidbodyConstraints2D.None;
+            myBody.constraints = RigidbodyConstraints2D.FreezeRotation;
+        }
     }
 
     void CheckKeys()
@@ -85,5 +96,58 @@ public class PlayerMove : MonoBehaviour
             myBody.velocity = new Vector3(myBody.velocity.x, 0);
         }
         
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.name == "Dialog1")
+        {
+            talkUI.SetActive(true);
+            diaNum = 1;
+            
+
+        }
+        if (collision.gameObject.name == "Dialog2")
+        {
+            talkUI.SetActive(true);
+            diaNum = 2;
+
+
+        }
+        if (collision.gameObject.name == "Dialog3")
+        {
+            talkUI.SetActive(true);
+            diaNum = 3;
+
+
+        }
+        if (collision.gameObject.name == "Dialog4")
+        {
+            talkUI.SetActive(true);
+            diaNum = 4;
+
+
+        }
+        if (collision.gameObject.name == "Dialog5")
+        {
+            talkUI.SetActive(true);
+            diaNum = 5;
+
+
+        }
+        if (collision.gameObject.name == "Dialog6")
+        {
+            talkUI.SetActive(true);
+            diaNum = 6;
+
+
+        }
+        if (collision.gameObject.name == "Dialog7")
+        {
+            talkUI.SetActive(true);
+            diaNum = 7;
+
+
+        }
     }
 }
