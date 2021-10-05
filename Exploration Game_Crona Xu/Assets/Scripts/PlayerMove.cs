@@ -102,52 +102,60 @@ public class PlayerMove : MonoBehaviour
     {
         if(collision.gameObject.name == "Dialog1")
         {
+            Globals.diaNum = 1;
             talkUI.SetActive(true);
-            diaNum = 1;
+         
             
 
         }
         if (collision.gameObject.name == "Dialog2")
         {
+            Globals.diaNum = 2;
             talkUI.SetActive(true);
-            diaNum = 2;
+          
 
 
         }
         if (collision.gameObject.name == "Dialog3")
         {
+            Globals.diaNum = 3;
             talkUI.SetActive(true);
-            diaNum = 3;
+            
 
 
         }
         if (collision.gameObject.name == "Dialog4")
         {
+            Globals.diaNum = 4;
             talkUI.SetActive(true);
-            diaNum = 4;
+            
 
 
         }
         if (collision.gameObject.name == "Dialog5")
         {
+            Globals.diaNum = 5;
             talkUI.SetActive(true);
-            diaNum = 5;
+         
 
 
         }
         if (collision.gameObject.name == "Dialog6")
         {
+            Globals.diaNum = 6;
             talkUI.SetActive(true);
-            diaNum = 6;
+            
 
 
         }
         if (collision.gameObject.name == "Dialog7")
         {
+            Globals.diaNum = 7;
             talkUI.SetActive(true);
-            diaNum = 7;
+            
 
 
         }
     }
 }
+

@@ -42,7 +42,8 @@ public class DialogSystem : MonoBehaviour
             textLabel.text = textList[index];
             index++;
         }
-        if (Globals.diaNum == 1){
+        if (Globals.diaNum == 1)
+        {
             textFile = Resources.Load("Dialog1") as TextAsset;
         }
         if (Globals.diaNum == 2)
