@@ -12,6 +12,15 @@ public class DialogSystem : MonoBehaviour
     [Header("Text")]
     public TextAsset textFile;
     public int index;
+    public TextAsset dialog1;
+    public TextAsset dialog2;
+    public TextAsset dialog3;
+    public TextAsset dialog4;
+    public TextAsset dialog5;
+    public TextAsset dialog6;
+    public TextAsset dialog7;
+    public GameObject EndScreen;
+
 
     List<string> textList = new List<string>();
 
@@ -24,6 +33,35 @@ public class DialogSystem : MonoBehaviour
 
     private void OnEnable()
     {
+        if (Globals.diaNum == 1)
+        {
+            this.textFile = dialog1;
+        }
+        else if (Globals.diaNum == 2)
+        {
+            this.textFile = dialog2;
+        }
+        else if (Globals.diaNum == 3)
+        {
+            this.textFile = dialog3;
+        }
+        else if (Globals.diaNum == 4)
+        {
+            this.textFile = dialog4;
+        }
+        else if (Globals.diaNum == 5)
+        {
+            this.textFile = dialog5;
+        }
+        else if (Globals.diaNum == 6)
+        {
+            this.textFile = dialog6;
+        }
+        else if (Globals.diaNum == 7)
+        {
+            this.textFile = dialog7;
+        }
+        GetTextFromFile(textFile);
         textLabel.text = textList[index];
         index++;
     }
@@ -33,29 +71,35 @@ public class DialogSystem : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && index == textList.Count)
         {
-            gameObject.SetActive(false);
-            index = 0;
-            return;
+            if (textFile == dialog7)
+            {
+                EndScreen.SetActive(true);
+                gameObject.SetActive(false);
+                index = 0;
+                return;
+            }
+            else
+            {
+                gameObject.SetActive(false);
+                index = 0;
+                return;
+            }
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
             textLabel.text = textList[index];
             index++;
         }
-        if (Globals.diaNum == 1)
-        {
-            textFile = Resources.Load("Dialog1") as TextAsset;
-        }
-        if (Globals.diaNum == 2)
-        {
-            textFile = Resources.Load("Dialog2") as TextAsset;
-        }
+        
     }
 
     void GetTextFromFile(TextAsset file)
     {
         textList.Clear();
         index = 0;
+
+        
+
 
         var lineData = file.text.Split('\n');
 

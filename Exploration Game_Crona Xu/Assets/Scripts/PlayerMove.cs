@@ -8,6 +8,8 @@ public class PlayerMove : MonoBehaviour
     public float jumpHeight;
     public float gravityMultiplier;
     public GameObject talkUI;
+    public GameObject EndScreen;
+
     bool onFloor;
     public int diaNum;
    
@@ -38,12 +40,16 @@ public class PlayerMove : MonoBehaviour
         JumpPhysics();
         if (talkUI.activeSelf == true)
         {
-            myBody.constraints = RigidbodyConstraints2D.FreezeAll;
+            myBody.constraints = RigidbodyConstraints2D.FreezePositionX;
         }
         else
         {
             myBody.constraints = RigidbodyConstraints2D.None;
             myBody.constraints = RigidbodyConstraints2D.FreezeRotation;
+        }
+        if (EndScreen.activeSelf == true)
+        {
+            myBody.constraints = RigidbodyConstraints2D.FreezeAll;
         }
     }
 
