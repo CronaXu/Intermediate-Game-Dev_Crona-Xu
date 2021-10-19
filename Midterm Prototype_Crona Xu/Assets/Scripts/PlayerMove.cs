@@ -9,6 +9,8 @@ public class PlayerMove : MonoBehaviour
     public float gravityMultiplier;
     public GameObject talkUI;
     public GameObject EndScreen;
+    public Animator Player;
+    
 
     bool onFloor;
     public int diaNum;
@@ -41,6 +43,7 @@ public class PlayerMove : MonoBehaviour
         if (talkUI.activeSelf == true)
         {
             myBody.constraints = RigidbodyConstraints2D.FreezePositionX;
+            Player.SetBool("IsMoving", false);
         }
         else
         {
@@ -50,6 +53,8 @@ public class PlayerMove : MonoBehaviour
         if (EndScreen.activeSelf == true)
         {
             myBody.constraints = RigidbodyConstraints2D.FreezeAll;
+            Player.SetBool("IsMoving", false);
+            Player.SetBool("IsJumping", false);
         }
     }
 
@@ -59,18 +64,27 @@ public class PlayerMove : MonoBehaviour
         {
             myRenderer.flipX = false;
             HandleLRMovement(speed);
-
+            Player.SetBool("IsMoving", true);
+            Player.SetBool("StandStill", false);
         }
         else if (Input.GetKey(KeyCode.A))
         {
             myRenderer.flipX = true;
             HandleLRMovement(-speed);
+            Player.SetBool("IsMoving", true);
+            Player.SetBool("StandStill", false);
         }
-        
+        else
+        {
+            Player.SetBool("IsMoving", false);
+            Player.SetBool("StandStill", true);
+        }
+
         if (Input.GetKey(KeyCode.W) && onFloor)
         {
             myBody.velocity = new Vector3(myBody.velocity.x, jumpHeight);
-
+            Player.SetBool("IsJumping", true);
+            Player.SetBool("StandStill", false);
         }
         else if (!Input.GetKey(KeyCode.W) && !onFloor)
         {
@@ -99,6 +113,7 @@ public class PlayerMove : MonoBehaviour
         if (collision.gameObject.tag == "floor")
         {
             onFloor = true;
+            Player.SetBool("IsJumping", false);
             myBody.velocity = new Vector3(myBody.velocity.x, 0);
         }
         
@@ -106,60 +121,61 @@ public class PlayerMove : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.name == "Dialog1")
+        
+        if (collision.gameObject.name == "Dialog1")
         {
             Globals.diaNum = 1;
             talkUI.SetActive(true);
-         
-            
+
+            Player.SetBool("IsMoving", false);
 
         }
         if (collision.gameObject.name == "Dialog2")
         {
             Globals.diaNum = 2;
             talkUI.SetActive(true);
-          
 
 
+            Player.SetBool("IsMoving", false);
         }
         if (collision.gameObject.name == "Dialog3")
         {
             Globals.diaNum = 3;
             talkUI.SetActive(true);
-            
 
+            Player.SetBool("IsMoving", false);
 
         }
         if (collision.gameObject.name == "Dialog4")
         {
             Globals.diaNum = 4;
             talkUI.SetActive(true);
-            
 
+            Player.SetBool("IsMoving", false);
 
         }
         if (collision.gameObject.name == "Dialog5")
         {
             Globals.diaNum = 5;
             talkUI.SetActive(true);
-         
 
+            Player.SetBool("IsMoving", false);
 
         }
         if (collision.gameObject.name == "Dialog6")
         {
             Globals.diaNum = 6;
             talkUI.SetActive(true);
-            
 
+            Player.SetBool("IsMoving", false);
 
         }
         if (collision.gameObject.name == "Dialog7")
         {
             Globals.diaNum = 7;
             talkUI.SetActive(true);
-            
 
+            Player.SetBool("IsMoving", false);
 
         }
     }
