@@ -1,4 +1,4 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -114,6 +114,8 @@ public class PlayerMove : MonoBehaviour
         {
             onFloor = true;
             Player.SetBool("IsJumping", false);
+            Player.SetBool("IsMoving", true);
+            
             myBody.velocity = new Vector3(myBody.velocity.x, 0);
         }
         
