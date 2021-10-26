@@ -29,8 +29,8 @@ public class DialogSystem : MonoBehaviour
     public TextAsset dialog15;
     public TextAsset dialog16;
     public GameObject EndScreen;
-    public AudioSource hit;
-    public AudioSource door;
+    
+    
     public GameObject Block;
 
 
@@ -42,8 +42,7 @@ public class DialogSystem : MonoBehaviour
 
     void Start()
     {
-        hit = gameObject.GetComponent<AudioSource>();
-        door = gameObject.GetComponent<AudioSource>();
+        
     }
 
     void Awake()
@@ -146,7 +145,7 @@ public class DialogSystem : MonoBehaviour
             
             if (textFile == dialog7)
             {
-                hit.Play();
+                Globals.playHit = true;
                 EndScreen.SetActive(true);
                 gameObject.SetActive(false);
                 index = 0;
@@ -154,7 +153,7 @@ public class DialogSystem : MonoBehaviour
             }else if(textFile == dialog16)
             {
                 Destroy(Block);
-                door.Play();
+                Globals.playDoor = true;
                 gameObject.SetActive(false);
                 index = 0;
                 return;
@@ -209,4 +208,7 @@ public static class Globals
     public static bool dia14Viewed = false;
     public static bool dia15Viewed = false;
     public static bool dia16Viewed = false;
+    public static bool playHit = false;
+    public static bool playDoor = false;
 }
+

@@ -11,7 +11,9 @@ public class PlayerMove : MonoBehaviour
     public GameObject EndScreen;
     public GameObject TE;
     public Animator Player;
-    
+    public AudioSource myAudioSource;
+    public AudioClip door;
+    public AudioClip hit;
 
     bool onFloor;
     public int diaNum;
@@ -63,6 +65,18 @@ public class PlayerMove : MonoBehaviour
             myBody.constraints = RigidbodyConstraints2D.FreezeAll;
             Player.SetBool("IsMoving", false);
             Player.SetBool("IsJumping", false);
+        }
+        if (Globals.playHit == true)
+        {
+            myAudioSource.clip = hit;
+            myAudioSource.Play();
+            Globals.playHit = false;
+        }
+        if (Globals.playDoor == true)
+        {
+            myAudioSource.clip = hit;
+            myAudioSource.Play();
+            Globals.playDoor = false;
         }
     }
 
