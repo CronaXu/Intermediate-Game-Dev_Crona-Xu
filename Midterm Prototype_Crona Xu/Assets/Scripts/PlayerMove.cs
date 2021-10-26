@@ -9,6 +9,7 @@ public class PlayerMove : MonoBehaviour
     public float gravityMultiplier;
     public GameObject talkUI;
     public GameObject EndScreen;
+    public GameObject TE;
     public Animator Player;
     
 
@@ -17,6 +18,7 @@ public class PlayerMove : MonoBehaviour
    
 
     Rigidbody2D myBody;
+
 
 
 
@@ -51,6 +53,12 @@ public class PlayerMove : MonoBehaviour
             myBody.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
         if (EndScreen.activeSelf == true)
+        {
+            myBody.constraints = RigidbodyConstraints2D.FreezeAll;
+            Player.SetBool("IsMoving", false);
+            Player.SetBool("IsJumping", false);
+        }
+        if (TE.activeSelf == true)
         {
             myBody.constraints = RigidbodyConstraints2D.FreezeAll;
             Player.SetBool("IsMoving", false);
@@ -251,6 +259,10 @@ public class PlayerMove : MonoBehaviour
 
             Player.SetBool("IsMoving", false);
 
+        }
+        if (collision.gameObject.name == "TETrigger")
+        {
+            TE.SetActive(true);
         }
     }
 }

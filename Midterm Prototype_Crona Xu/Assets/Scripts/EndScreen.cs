@@ -5,7 +5,11 @@ using UnityEngine;
 public class EndScreen : MonoBehaviour
 {
     
-    
+    void Start()
+    {
+        
+    }
+
 
     public void OnEnable()
     {

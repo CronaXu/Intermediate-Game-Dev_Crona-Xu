@@ -29,11 +29,22 @@ public class DialogSystem : MonoBehaviour
     public TextAsset dialog15;
     public TextAsset dialog16;
     public GameObject EndScreen;
+    public AudioSource hit;
+    public AudioSource door;
+    public GameObject Block;
+
 
 
     List<string> textList = new List<string>();
 
     // Start is called before the first frame update
+
+
+    void Start()
+    {
+        hit = gameObject.GetComponent<AudioSource>();
+        door = gameObject.GetComponent<AudioSource>();
+    }
 
     void Awake()
     {
@@ -132,9 +143,18 @@ public class DialogSystem : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && index == textList.Count)
         {
+            
             if (textFile == dialog7)
             {
+                hit.Play();
                 EndScreen.SetActive(true);
+                gameObject.SetActive(false);
+                index = 0;
+                return;
+            }else if(textFile == dialog16)
+            {
+                Destroy(Block);
+                door.Play();
                 gameObject.SetActive(false);
                 index = 0;
                 return;
