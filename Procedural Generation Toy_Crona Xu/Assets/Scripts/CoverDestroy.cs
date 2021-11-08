@@ -16,9 +16,5 @@ public class CoverDestroy : MonoBehaviour
         
     }
 
-    private void OnMouseDown()
-    {
-        Destroy(this);
-
-    }
+   
 }

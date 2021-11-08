@@ -25,6 +25,18 @@ public class GridManager : MonoBehaviour
             }
 
         }
+
+        for (int x = 0; x < gridWidth; x++)
+        {
+            for (int y = 0; y < gridHeight; y++)
+            {
+                if (gridTiles[x, y].GetComponent<SpriteRenderer>().sprite != tileSprites[9])
+                {
+                    ChangeTile(x, y);
+                }
+            }
+
+        }
     }
 
     // Update is called once per frame
@@ -41,21 +53,21 @@ public class GridManager : MonoBehaviour
         
         newTile.transform.position = new Vector3(transform.position.x + xPos, transform.position.y + yPos, 1);
         TileData myData = newTile.GetComponent<TileData>();
-        if (randTile == 0)
+        if (randTile == 4)
         {
-            newTile.GetComponent<SpriteRenderer>().sprite = tileSprites[randTile];
+            newTile.GetComponent<SpriteRenderer>().sprite = tileSprites[9];
         }
-        else if (randTile == 1)
-        {
-            
-        }
-        else if (randTile == 2)
-        {
-            
-        }
+        
         myData.gridX = xPos;
         myData.gridY = yPos;
         gridTiles[xPos, yPos] = newTile;
+
+    }
+
+
+    void ChangeTile(int xPos, int yPos)
+    {
+        int snakeNum = 0;
 
     }
 }

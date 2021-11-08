@@ -35,8 +35,11 @@ public class CoverManager : MonoBehaviour
     void MakeCover(int xPos, int yPos)
     {
         GameObject newCover = Instantiate(coverPrefab);
-
+        CoverData myData = newCover.GetComponent<CoverData>();
         newCover.transform.position = new Vector3(transform.position.x + xPos, transform.position.y + yPos, 0);
         gridCovers[xPos, yPos] = newCover;
+        myData.coverX = xPos;
+        myData.coverY = yPos;
+        Debug.Log(myData.coverX + "," + myData.coverY);
     }
 }
