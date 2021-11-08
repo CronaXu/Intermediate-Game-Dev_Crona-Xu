@@ -32,6 +32,7 @@ public class DialogSystem : MonoBehaviour
     
     
     public GameObject Block;
+    public AudioSource clickAudioSource;
 
 
 
@@ -167,6 +168,7 @@ public class DialogSystem : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            clickAudioSource.Play();
             textLabel.text = textList[index];
             index++;
         }
