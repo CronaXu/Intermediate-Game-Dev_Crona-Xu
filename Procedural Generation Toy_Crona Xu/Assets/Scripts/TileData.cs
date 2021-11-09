@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TileData : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class TileData : MonoBehaviour
     public int gridY;
     public bool revealed;
     public Sprite snake;
+    
 
     private void OnMouseEnter()
     {
@@ -15,6 +17,21 @@ public class TileData : MonoBehaviour
         {
             Globals.appleNum -= 1;
             this.revealed = true;
+            Globals.playApple = true;
         }
+
+        if (gameObject.GetComponent<SpriteRenderer>().sprite == snake)
+        {
+            Globals.playSnake = true;
+            Invoke("ChangeScene", 1);
+        }
+
+        
     }
+
+    void ChangeScene()
+    {
+        SceneManager.LoadScene(2);
+    }
+    
 }

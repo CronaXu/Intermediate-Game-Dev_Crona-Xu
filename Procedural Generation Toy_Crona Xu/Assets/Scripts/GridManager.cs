@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GridManager : MonoBehaviour
 {
@@ -44,7 +45,10 @@ public class GridManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Globals.appleNum == 0)
+        {
+            Invoke("ChangeWinScene", 1);
+        }
     }
 
 
@@ -138,11 +142,20 @@ public class GridManager : MonoBehaviour
 
         gridTiles[xPos, yPos].GetComponent<SpriteRenderer>().sprite = tileSprites[snakeNum];
     }
+
+    void ChangeWinScene()
+    {
+        SceneManager.LoadScene(3);
+    }
 }
+
+
 
 public static class Globals
 {
     public static int appleNum;
     public static int snakeTotal;
+    public static bool playApple;
+    public static bool playSnake;
 
 }

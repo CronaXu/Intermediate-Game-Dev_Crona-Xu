@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8302270015417813143}
   - component: {fileID: 3043442720618057183}
   - component: {fileID: 2754078382488443738}
-  - component: {fileID: 7452843152419845671}
   m_Layer: 0
   m_Name: Tile
   m_TagString: Untagged
@@ -127,15 +126,3 @@ MonoBehaviour:
   gridY: 0
   revealed: 0
   snake: {fileID: 21300000, guid: 50465be197a2e494faae8ddde26e2fe9, type: 3}
---- !u!114 &7452843152419845671
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4175556488725363971}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 132ac290aecaf4641a062ddf04979289, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

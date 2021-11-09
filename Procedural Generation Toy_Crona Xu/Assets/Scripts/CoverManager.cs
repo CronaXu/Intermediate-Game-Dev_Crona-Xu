@@ -10,6 +10,9 @@ public class CoverManager : MonoBehaviour
 
     public int gridWidth;
     public int gridHeight;
+    public AudioSource myAudioSource;
+    public AudioClip appleSound;
+    public AudioClip snakeSound;
 
     // Start is called before the first frame update
     void Start()
@@ -23,12 +26,24 @@ public class CoverManager : MonoBehaviour
             }
 
         }
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (Globals.playApple)
+        {
+            myAudioSource.clip = appleSound;
+            myAudioSource.Play();
+            Globals.playApple = false;
+        }
+        if (Globals.playSnake)
+        {
+            myAudioSource.clip = snakeSound;
+            myAudioSource.Play();
+            Globals.playSnake = false;
+        }
     }
 
 
@@ -40,6 +55,6 @@ public class CoverManager : MonoBehaviour
         gridCovers[xPos, yPos] = newCover;
         myData.coverX = xPos;
         myData.coverY = yPos;
-        Debug.Log(myData.coverX + "," + myData.coverY);
+        //Debug.Log(myData.coverX + "," + myData.coverY);
     }
 }
