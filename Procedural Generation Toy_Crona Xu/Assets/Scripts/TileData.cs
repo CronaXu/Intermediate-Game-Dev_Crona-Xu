@@ -7,9 +7,14 @@ public class TileData : MonoBehaviour
     public int gridX;
     public int gridY;
     public bool revealed;
+    public Sprite snake;
 
-    private void OnMouseDown()
+    private void OnMouseEnter()
     {
-        Debug.Log(gridX + "," + gridY);
+        if (!revealed && gameObject.GetComponent<SpriteRenderer>().sprite != snake)
+        {
+            Globals.appleNum -= 1;
+            this.revealed = true;
+        }
     }
 }

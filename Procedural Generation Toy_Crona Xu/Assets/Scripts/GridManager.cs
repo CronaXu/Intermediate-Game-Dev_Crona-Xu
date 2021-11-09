@@ -17,6 +17,8 @@ public class GridManager : MonoBehaviour
     void Start()
     {
         gridTiles = new GameObject[gridWidth, gridHeight];
+        Globals.appleNum = 225;
+        Globals.snakeTotal = 0;
         for (int x = 0; x < gridWidth; x++)
         {
             for (int y = 0; y < gridHeight; y++)
@@ -42,7 +44,7 @@ public class GridManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
 
@@ -56,6 +58,8 @@ public class GridManager : MonoBehaviour
         if (randTile == 4)
         {
             newTile.GetComponent<SpriteRenderer>().sprite = tileSprites[9];
+            Globals.appleNum -= 1;
+            Globals.snakeTotal += 1;
         }
         
         myData.gridX = xPos;
@@ -68,6 +72,77 @@ public class GridManager : MonoBehaviour
     void ChangeTile(int xPos, int yPos)
     {
         int snakeNum = 0;
+        if (xPos - 1 >= 0 && xPos - 1 <= 14 && yPos - 1 >= 0 && yPos - 1 <= 14)
+        {
+            if (gridTiles[xPos - 1, yPos - 1].GetComponent<SpriteRenderer>().sprite == tileSprites[9])
+            {
+                snakeNum += 1;
+            }
+        }
 
+        if (xPos - 1 >= 0 && xPos - 1 <= 14 && yPos >= 0 && yPos <= 14)
+        {
+            if (gridTiles[xPos - 1, yPos].GetComponent<SpriteRenderer>().sprite == tileSprites[9])
+            {
+                snakeNum += 1;
+            }
+        }
+
+        if (xPos - 1 >= 0 && xPos - 1 <= 14 && yPos + 1 >= 0 && yPos + 1 <= 14)
+        {
+            if (gridTiles[xPos - 1, yPos + 1].GetComponent<SpriteRenderer>().sprite == tileSprites[9])
+            {
+                snakeNum += 1;
+            }
+        }
+
+        if (xPos >= 0 && xPos <= 14 && yPos - 1 >= 0 && yPos - 1 <= 14)
+        {
+            if (gridTiles[xPos, yPos - 1].GetComponent<SpriteRenderer>().sprite == tileSprites[9])
+            {
+                snakeNum += 1;
+            }
+        }
+
+        if (xPos >= 0 && xPos <= 14 && yPos + 1 >= 0 && yPos + 1 <= 14)
+        {
+            if (gridTiles[xPos, yPos + 1].GetComponent<SpriteRenderer>().sprite == tileSprites[9])
+            {
+                snakeNum += 1;
+            }
+        }
+
+        if (xPos + 1 >= 0 && xPos + 1 <= 14 && yPos - 1 >= 0 && yPos - 1 <= 14)
+        {
+            if (gridTiles[xPos + 1, yPos - 1].GetComponent<SpriteRenderer>().sprite == tileSprites[9])
+            {
+                snakeNum += 1;
+            }
+        }
+
+        if (xPos + 1 >= 0 && xPos + 1 <= 14 && yPos >= 0 && yPos <= 14)
+        {
+            if (gridTiles[xPos + 1, yPos].GetComponent<SpriteRenderer>().sprite == tileSprites[9])
+            {
+                snakeNum += 1;
+            }
+        }
+
+        if (xPos + 1 >= 0 && xPos + 1 <= 14 && yPos + 1 >= 0 && yPos + 1 <= 14)
+        {
+            if (gridTiles[xPos + 1, yPos + 1].GetComponent<SpriteRenderer>().sprite == tileSprites[9])
+            {
+                snakeNum += 1;
+            }
+        }
+
+        gridTiles[xPos, yPos].GetComponent<SpriteRenderer>().sprite = tileSprites[snakeNum];
     }
+}
+
+public static class Globals
+{
+    public static int appleNum;
+    public static int snakeTotal;
+
 }
